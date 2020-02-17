@@ -1,5 +1,6 @@
 Spring boot with Apache Kafka
 ===
+Simple producer and consumer to demonstrate Kafka basic features. 
 
 Prerequisites
 ---
