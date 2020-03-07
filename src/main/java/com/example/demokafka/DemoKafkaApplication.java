@@ -17,7 +17,7 @@ public class DemoKafkaApplication {
 			} else if ("-p".equals(args[0])) {
 				MessageProducer producer = context.getBean(MessageProducer.class);
 				for (int i = 1; i < args.length; i++) {
-					producer.send(new Message(new Date(), args[i]));
+					producer.send(new Message(new Date().getTime(), args[i], "demo-kafka-app"));
 				}
 				context.close();
 			} else {

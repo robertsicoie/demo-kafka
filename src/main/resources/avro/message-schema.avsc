@@ -1,0 +1,20 @@
+{
+    "type": "record",
+    "name": "Message",
+    "namespace": "com.example.demokafka",
+    "fields": [
+        {
+            "name": "timestamp",
+            "type": "long"
+        },
+        {
+            "name": "message",
+            "type": "string"
+        },
+        {
+            "name": "sender",
+            "type": "string"
+        }
+
+    ]
+}

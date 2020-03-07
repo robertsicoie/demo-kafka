@@ -1,10 +1,12 @@
 Spring boot with Apache Kafka
 ===
-Simple producer and consumer to demonstrate Kafka basic features. 
+Avro producer and consumer to demonstrate Kafka basic features. 
 
 Prerequisites
 ---
-Download and run Apache Kafka, create the `demo-topic` topic. For details see [this page](https://kafka.apache.org/quickstart).
+
+Install confluent kafka (as Schema Registry is needed).
+Create the `demo-topic` topic.
 
 Run
 ---
@@ -25,3 +27,7 @@ Run the publisher code
 ```bash
 java -jar target/demo-kafka-0.0.1-SNAPSHOT.jar -p message1 message2 message3
 ``` 
+
+TODO
+---
+ * Check schema changes.

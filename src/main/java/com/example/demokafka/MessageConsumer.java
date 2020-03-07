@@ -16,14 +16,14 @@ public class MessageConsumer {
     @KafkaListener(
             topics = "${kafka.topicName}",
             containerFactory = "objectListenerContainerFactory")
-    public void listener(String message,
+    public void listener(Message message,
                          @Header(KafkaHeaders.RECEIVED_PARTITION_ID) Integer partition,
                          @Header(KafkaHeaders.OFFSET) Long offset,
                          Acknowledgment ack){
 
-        LOG.info("Got message '" + message + "' on partition " + partition + ", offset " + offset + ".");
+        LOG.info("Got message '" + message.toString() + "' on partition " + partition + ", offset " + offset + ".");
 
         ack.acknowledge();
-        LOG.info("Processed message '" + message + "'.");
+        LOG.info("Processed message '" + message.toString() + "'.");
     }
 }

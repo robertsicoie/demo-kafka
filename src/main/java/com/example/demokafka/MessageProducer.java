@@ -15,26 +15,22 @@ public class MessageProducer {
     private static Logger LOG = LoggerFactory.getLogger(MessageProducer.class);
 
     @Autowired
-    private KafkaTemplate<String, String> kafkaTemplate;
-
-
-    @Autowired
-    private KafkaTemplate<String, String> objectKafkaTemplate;
+    private KafkaTemplate<String, Message> objectKafkaTemplate;
 
     @Value("${kafka.topicName}")
     private String topicName;
 
     public void send(Message message) {
-        ListenableFuture<SendResult<String, String>> future = objectKafkaTemplate.send(topicName, message.toString());
-        future.addCallback(new ListenableFutureCallback<SendResult<String, String>>() {
+        ListenableFuture<SendResult<String, Message>> future = objectKafkaTemplate.send(topicName, message);
+        future.addCallback(new ListenableFutureCallback<SendResult<String, Message>>() {
             @Override
             public void onFailure(Throwable throwable) {
                 LOG.error("Failed to send message '" + message.toString() + "' on topic '" + topicName + "' due to: " + throwable.getMessage(), throwable);
             }
 
             @Override
-            public void onSuccess(SendResult<String, String> stringObjectSendResult) {
-                LOG.info("Successfully sent message '" + message.toString() + "' on topic '" + topicName + "'.");
+            public void onSuccess(SendResult<String, Message> stringObjectSendResult) {
+                LOG.info("Successfully sent message '" + message + "' on topic '" + topicName + "'.");
             }
         });
     }
